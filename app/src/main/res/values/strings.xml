@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Libro Link</string>
+    <string name="home">Home</string>
+    <string name="downloads">Downloads</string>
+    <string name="my_books">My Books</string>
+    <string name="search">Search</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="cancel_search">Cancel Search</string>
+    <string name="toggle">Toggle View</string>
+</resources>
