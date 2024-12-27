@@ -1,19 +1,15 @@
 package com.edison.librolink.navigation
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.edison.librolink.ui.theme.ThemeMode
 
-sealed class Screen(val route : String, val title: String, val icon: ImageVector) {
-    data object Home : Screen("home","Home", Icons.Default.Home)
-    data object Books : Screen("books","My Books",Icons.Default.Favorite)
+sealed class Screen(val route: String, val title: String) {
+    data object Home : Screen("home", "Home")
+    data object Books : Screen("books", "My Books")
 }
 
 @Composable
