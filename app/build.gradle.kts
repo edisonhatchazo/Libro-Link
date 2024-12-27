@@ -70,9 +70,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Room Database
-    implementation ("androidx.room:room-runtime:2.5.1")
+    implementation(libs.androidx.room.runtime)
     ksp("androidx.room:room-compiler:${rootProject.extra["room_version"]}")
-    implementation ("androidx.room:room-ktx:2.5.1")
+    implementation(libs.room.ktx)
 
     //Retrofit
     implementation (libs.retrofit)
