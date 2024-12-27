@@ -1,16 +1,15 @@
-package com.edison.librolink.ui.screen
+package com.edison.librolink.ui.screen.home
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.edison.librolink.retrofit.BookItem
-import com.edison.librolink.retrofit.RetrofitInstance
+import com.edison.librolink.data.retrofit.BookItem
+import com.edison.librolink.data.retrofit.RetrofitInstance
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class BooksViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
     private val _books = MutableStateFlow<List<BookItem>>(emptyList())
     val books: StateFlow<List<BookItem>> = _books
 

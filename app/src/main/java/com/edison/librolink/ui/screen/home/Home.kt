@@ -1,11 +1,13 @@
-package com.edison.librolink.ui.screen
+package com.edison.librolink.ui.screen.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -59,9 +61,9 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     themeMode: ThemeMode,
     onThemeChange: (ThemeMode) -> Unit,
-
+    navigateToBookDetailScreen: (String) -> Unit
 ) {
-    val viewModel: BooksViewModel = viewModel()
+    val viewModel: HomeViewModel = viewModel()
     val isSystemDarkTheme = isSystemInDarkTheme()
     var showDescriptions by remember { mutableStateOf(false) }
     var query by remember { mutableStateOf("")}
@@ -97,7 +99,8 @@ fun HomeScreen(
             modifier = modifier.padding(paddingValues = paddingValues),
             onLoadMore = {viewModel.loadMoreBooks(query)},
             viewModel = viewModel,
-            showDescriptions = showDescriptions
+            showDescriptions = showDescriptions,
+            navigateToBookDetailScreen = navigateToBookDetailScreen
         )
     }
 }
@@ -105,9 +108,10 @@ fun HomeScreen(
 @Composable
 fun MainBookScreen(
     modifier: Modifier = Modifier,
-    viewModel: BooksViewModel,
+    viewModel: HomeViewModel,
     onLoadMore: () -> Unit,
-    showDescriptions: Boolean
+    showDescriptions: Boolean,
+    navigateToBookDetailScreen: (String) -> Unit
 ) {
     val books by viewModel.books.collectAsState()
     val gridState = rememberLazyGridState()
@@ -142,6 +146,7 @@ fun MainBookScreen(
                         modifier = Modifier
                             .padding(8.dp)
                             .fillMaxWidth()
+                            .clickable { navigateToBookDetailScreen(book.id) }
                     ) {
                         if (showDescriptions) {
                             // Show description type
@@ -203,10 +208,6 @@ fun MainBookScreen(
     }
 }
 
-
-
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeTopAppBar(
@@ -223,63 +224,69 @@ fun HomeTopAppBar(
         true -> Color.DarkGray
         else -> Color.LightGray
     }
-    TopAppBar(
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = color),
-        title = {
-            if (isSearching) {
-                TextField(
-                    value = searchQuery,
-                    onValueChange = { searchQuery = it },
-                    placeholder = { Text("Search books...") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(0.8f)
-                )
-            } else {
-                Text(title)
+    Box(
+        modifier = Modifier
+        .fillMaxWidth()
+        .height(100.dp)
+    ) {
+        TopAppBar(
+            colors = TopAppBarDefaults.topAppBarColors(containerColor = color),
+            title = {
+                if (isSearching) {
+                    TextField(
+                        value = searchQuery,
+                        onValueChange = { searchQuery = it },
+                        placeholder = { Text("Search books...") },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth(0.8f)
+                    )
+                } else {
+                    Text(title)
+                }
+            },
+            scrollBehavior = scrollBehavior,
+            actions = {
+                IconButton(onClick = onToggleView) {
+                    Icon(
+                        imageVector = Icons.Filled.List,
+                        contentDescription = stringResource(R.string.toggle)
+                    )
+                }
+                if (isSearching) {
+                    IconButton(onClick = { onSearch(searchQuery) }) {
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = stringResource(R.string.search)
+                        )
+                    }
+                    IconButton(onClick = { isSearching = false }) {
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = stringResource(R.string.cancel_search)
+                        )
+                    }
+                } else {
+                    IconButton(onClick = { isSearching = true }) {
+                        Icon(
+                            imageVector = Icons.Filled.Search,
+                            contentDescription = stringResource(R.string.search)
+                        )
+                    }
+                    IconButton(onClick = onThemeChange) {
+                        Icon(
+                            painter = painterResource(
+                                id = if (isDarkMode) R.drawable.icons8_dark_mode_50
+                                else R.drawable.icons8_light_mode_78
+                            ),
+                            contentDescription = stringResource(
+                                if (isDarkMode) R.string.light_mode else R.string.dark_mode
+                            ),
+                            tint = Color.White
+                        )
+                    }
+                }
             }
-        },
-        scrollBehavior = scrollBehavior,
-        actions = {
-            IconButton(onClick =  onToggleView) {
-                Icon(
-                    imageVector = Icons.Filled.List,
-                    contentDescription = stringResource(R.string.toggle)
-                )
-            }
-            if (isSearching) {
-                IconButton(onClick = { onSearch(searchQuery) }) {
-                    Icon(
-                        imageVector = Icons.Filled.Check,
-                        contentDescription = stringResource(R.string.search)
-                    )
-                }
-                IconButton(onClick = { isSearching = false }) {
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = stringResource(R.string.cancel_search)
-                    )
-                }
-            } else {
-                IconButton(onClick = { isSearching = true }) {
-                    Icon(
-                        imageVector = Icons.Filled.Search,
-                        contentDescription = stringResource(R.string.search)
-                    )
-                }
-                IconButton(onClick = onThemeChange) {
-                    Icon(
-                        painter = painterResource(
-                            id = if (isDarkMode) R.drawable.icons8_dark_mode_50
-                            else R.drawable.icons8_light_mode_78
-                        ),
-                        contentDescription = stringResource(
-                            if (isDarkMode) R.string.light_mode else R.string.dark_mode
-                        ),
-                        tint = Color.White
-                    )
-                }
-            }
-        }
-    )
+        )
+    }
 }
 

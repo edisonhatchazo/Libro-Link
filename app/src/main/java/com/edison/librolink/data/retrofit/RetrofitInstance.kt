@@ -1,4 +1,4 @@
-package com.edison.librolink.retrofit
+package com.edison.librolink.data.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

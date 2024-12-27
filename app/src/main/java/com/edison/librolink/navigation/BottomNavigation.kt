@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -14,8 +13,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.edison.librolink.ui.theme.ThemeMode
 
 data class BottomNavigationItem(
@@ -37,27 +36,22 @@ data class BottomNavigationItem(
                 icon = Icons.Filled.Favorite,
                 route = Screen.Books.route
             ),
-            BottomNavigationItem(
-                label = "Downloads",
-                icon = Icons.Filled.List,
-                route = Screen.Downloads.route
-            ),
         )
     }
 }
-
 @Composable
 fun BottomNavigation(
-    navController: NavHostController,
     themeMode: ThemeMode,
     onThemeChange: (ThemeMode) -> Unit
 ) {
-    val items = BottomNavigationItem().bottomNavigationItems()
-    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+    val navController = rememberNavController()
+
     Scaffold(
         bottomBar = {
             NavigationBar {
-                items.forEachIndexed { _, navigationItem ->
+                val items = BottomNavigationItem().bottomNavigationItems()
+                val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+                items.forEach { navigationItem ->
                     NavigationBarItem(
                         selected = currentRoute == navigationItem.route,
                         label = { Text(navigationItem.label) },
@@ -78,6 +72,7 @@ fun BottomNavigation(
             }
         }
     ) { paddingValues ->
+        // Use the same NavHostController here
         Navigation(
             navController = navController,
             modifier = Modifier.padding(paddingValues),

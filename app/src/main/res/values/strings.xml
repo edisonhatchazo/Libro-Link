@@ -8,4 +8,24 @@
     <string name="light_mode">Light Mode</string>
     <string name="cancel_search">Cancel Search</string>
     <string name="toggle">Toggle View</string>
+    <string name="home_book_details">Home Book Details</string>
+    <string name="read_book">Reading Book</string>
+    <string name="add_to_favorites">Add to Favorites</string>
+
+    <string name="title">Title</string>
+    <string name="subtitle">Subtitle</string>
+    <string name="authors">Authors</string>
+    <string name="no_authors">No Authors</string>
+    <string name="publisher">Publisher</string>
+    <string name="published_date">Published Date</string>
+    <string name="print_type">Print Type</string>
+    <string name="isbn">ISBN Type</string>
+    <string name="page_count">Page Count</string>
+    <string name="categories">Categories</string>
+    <string name="description">Description</string>
+    <string name="maturity">Maturity Rating</string>
+    <string name="language">Language</string>
+    <string name="country">Country</string>
+    <string name="back">Back</string>
+
 </resources>
