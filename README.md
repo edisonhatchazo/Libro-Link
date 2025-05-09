@@ -1,7 +1,7 @@
 # Libro-Link
 
 **Description:**
-LibroLink is a Kotlin-based Android application designed to provide a comprehensive digital platform for managing, exploring, and interacting with books. The app allows users to search for books, view detailed descriptions, explore books on Google Books, and manage their own personalized library of favorite books. With seamless navigation, intuitive UI, and support for dark and light modes, LibroLink enhances the user's reading and book management experience.
+Libro Link is a Flutter-based application designed to provide a comprehensive digital platform for managing, exploring, and interacting with books. The app allows users to search for books, view detailed descriptions, explore books on Google Books, and manage a personalized favorites library. With seamless navigation, intuitive UI, and support for dark and light modes, Libro Link enhances the user's reading and book management experience across platforms like Android, Windows, and Web.
 
 **Features:**
 1. Home Screen:
@@ -30,31 +30,33 @@ Integrated WebView:
 Allows users to read books directly through Google Books' web interface (if available).
 5. Offline Features:
 Favorite Book Persistence:
-Save favorite books in the app using a local Room database, ensuring data remains available offline.
+Favorites are saved using a local SQLite database (via Floor ORM), ensuring data remains available offline.
 6. Dark and Light Mode Support:
 Dynamic Theme Switching:
 Users can toggle between dark and light modes or use the system's default theme setting.
 
 **Technical Highlights:**
 1. Libraries and Frameworks:
-- Jetpack Compose:
-Modern UI toolkit for building native Android interfaces.
-- Retrofit:
-For network requests to the Google Books API.
-- Room Database:
-To persist favorite books locally.
-- Glide/Coil:
-For efficient loading and displaying of book cover images.
+- Flutter:
+Cross-platform UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
+- Dio:
+Powerful HTTP client for making API requests to the Google Books API.
+- Drift / Floor / Hive:
+Local storage solutions used for persisting favorite books (Drift and Floor for SQL-based, Hive for key-value).
+- Provider:
+State management library for efficient UI updates.
 - WebView:
 To render Google Books' reading interface for supported books.
+- URL Launcher:
+  Opens external book preview links in the default browser.
 2. Google Books API Integration:
 The app fetches book details and supports reading links directly from the Google Books API. It processes and displays metadata, including titles, authors, publishers, descriptions, and images.
 3. Localization:
-String resources are used to support localization, enabling the app to be translated into multiple languages.
+Uses Flutter’s localization system (.arb files and intl package) to support multiple languages and improve accessibility for a global audience.
 
 **How to Use:**
 1. Launch the App:
-Open LibroLink on your Android device.
+Open LibroLink on your device.
 
 2. Search for Books:
 Use the search bar on the Home screen to find books by keywords.
@@ -71,22 +73,11 @@ Click the "Explore in Google Books" button to read or preview books directly.
 6. Switch Themes:
 Use the top-right icon to toggle between dark and light modes.
 
-**Installation:**
-1. Pre-built APK Installation:
-
-- Locate the libro_link_kotlin.apk file in the src/main/assets folder of the project.
-- Transfer the APK to your Android device and install it.
-
-2. Build the App:
-- Clone the repository.
-- Open the project in Android Studio.
-- Build and run the app on an emulator or a physical device.
-
 **Acknowledgments:**
 Special thanks to:
 
 - Google Books API for providing book data and previews.
-- Jetpack Compose for enabling a modern UI design.
+- Flutter for enabling a modern UI design.
 - Open-source contributors for providing tools and libraries.
 
 **License:**
