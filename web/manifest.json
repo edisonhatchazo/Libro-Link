@@ -1,0 +1,35 @@
+{
+    "name": "libro_link",
+    "short_name": "libro_link",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "LibroLink is an application designed to provide a comprehensive digital platform for managing, exploring, and interacting with books. The app allows users to search for books, view detailed descriptions, explore books on Google Books, and manage their own personalized library of favorite books. With seamless navigation, intuitive UI, and support for dark and light modes, LibroLink enhances the user's reading and book management experience.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
