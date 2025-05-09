@@ -69,7 +69,7 @@ class VolumeInfo {
       industryIdentifiers: (json['industryIdentifiers'] as List?)
           ?.map((e) => IndustryIdentifier.fromJson(e as Map<String, dynamic>))
           .toList(),
-      pageCount: json['pageCount'],  // Let it be dynamic (could be int or String)
+      pageCount: json['pageCount'],
       categories: (json['categories'] as List?)?.map((e) => e as String).toList(),
       description: json['description'] as String?,
       imageLinks: json['imageLinks'] == null

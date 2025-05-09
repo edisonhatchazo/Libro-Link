@@ -87,9 +87,8 @@ class _BookDetailsState extends State<BookDetails> {
                     isDarkMode: isDark,
                     onThemeChange: (newTheme) => widget.onThemeChange(newTheme),
                     isFavorite: viewModel.isFavorite,
-                    // You should define this in your ViewModel
                     onFavoriteToggle: () {
-                      viewModel.toggleFavorite(); // Toggle favorite logic
+                      viewModel.toggleFavorite();
                     },
                   ),
                   body: book == null

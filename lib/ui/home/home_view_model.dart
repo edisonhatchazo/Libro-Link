@@ -20,13 +20,10 @@ class HomeViewModel extends ChangeNotifier {
     if (_isLoading) return;
     _isLoading = true;
     try {
-      // final response = await dio.get('https://www.googleapis.com/books/v1/volumes?q=$query');
-      // debugPrint(response.data.toString());  // Print the raw response here
-
       final response = await _api.searchBooks(
-        query: query, // Query for the book search
-        startIndex: _currentIndex, // Pagination starting index
-        maxResults: _pageSize, // The number of results to load
+        query: query,
+        startIndex: _currentIndex,
+        maxResults: _pageSize,
       );
       debugPrint(response.toString());
       final newBooks = response.items ?? [];
@@ -37,7 +34,7 @@ class HomeViewModel extends ChangeNotifier {
       _currentIndex += _pageSize;
       notifyListeners();
     } catch (e) {
-      // debugPrint("Error loading books: $e");
+      debugPrint("Error loading books: $e");
     } finally {
       _isLoading = false;
     }

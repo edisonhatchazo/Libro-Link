@@ -82,10 +82,10 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(8),
             itemCount: viewModel.books.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,          // 2 columns
-              crossAxisSpacing: 8.0,      // horizontal spacing between cards
-              mainAxisSpacing: 4.0,       // vertical spacing between cards
-              childAspectRatio: 0.6,      // height-to-width ratio (adjust to fit your content)
+              crossAxisCount: 2,
+              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 4.0,
+              childAspectRatio: 0.6,
             ),
             itemBuilder: (context, index) {
               final book = viewModel.books[index];
